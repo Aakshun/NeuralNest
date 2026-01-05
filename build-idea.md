@@ -281,11 +281,102 @@ NeuralNest behaves like a disciplined newsroom:
 * Memory‑aware
 * Zero‑touch
 
-Humans only bring voice.
+
 
 ---
+## 10. Tech Stack
+Backend
+Python 3.11+ — core language
 
-## 10. Status
+FastAPI — internal API layer and service boundaries
+
+Background Workers (Celery / Async Tasks) — autonomous agent execution and scheduling
+
+Redis — task queue and short-lived state management
+
+Database (Structured Storage)
+SQL Database (PostgreSQL / MySQL)
+Stores:
+
+news articles metadata
+
+podcast episodes
+
+topics discussed
+
+agent decisions
+
+narrative plans
+
+generated scripts
+
+SQL is the source of truth for all structured system state.
+
+Vector Memory
+FAISS (local) or Qdrant (self-hosted/managed)
+Used for:
+
+article embeddings
+
+episode and topic embeddings
+
+similarity search for update detection
+
+AI / LLM Layer
+Reasoning-capable LLM
+Used by agents for:
+
+signal filtering
+
+importance scoring
+
+narrative planning
+
+script generation
+
+Embedding Model
+Used for:
+
+semantic similarity
+
+memory matching
+
+Models are treated as interchangeable infrastructure components.
+
+Ingestion Layer
+RSS Feeds — primary news ingestion method
+
+Hacker News API — high-signal AI stories
+
+arXiv API (optional) — research-level updates
+
+Selective Web Scraping — fallback when RSS summaries are insufficient
+
+Frontend
+React / Next.js — read-only interface
+
+Markdown Renderer — script display
+
+Minimal Sidebar UI — News, Updates, Script
+
+The frontend does not support editing, prompting, or approvals.
+
+Scheduling & Automation
+Cron Jobs / GitHub Actions / Serverless Scheduler
+
+fixed weekly execution
+
+deterministic pipeline runs
+
+Infrastructure
+Docker — containerized services
+
+Single-node deployment (initially)
+
+Agent-based horizontal scaling (future)
+
+
+## 11. Status
 
 This README defines the **canonical behavior** of the NeuralNest agent.
 
